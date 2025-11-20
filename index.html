@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoffeePoint - Свежий кофе каждый день</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">CoffeePoint</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#menu">Меню</a></li>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                    <li><a href="#" id="authButton">Войти</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" id="themeToggle">🌙</button>
+            <div class="burger" id="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Auth Modal -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="authModalTitle">Вход в аккаунт</h2>
+                <button class="close-modal" id="closeAuthModal">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">Вход</button>
+                    <button class="auth-tab" data-tab="register">Регистрация</button>
+                </div>
+                
+                <form id="loginForm" class="auth-form active">
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Пароль" required>
+                    <button type="submit" class="auth-btn">Войти</button>
+                </form>
+                
+                <form id="registerForm" class="auth-form">
+                    <input type="text" placeholder="Имя" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="tel" placeholder="Телефон" required>
+                    <input type="password" placeholder="Пароль" required>
+                    <input type="password" placeholder="Повторите пароль" required>
+                    <button type="submit" class="auth-btn">Зарегистрироваться</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Оплата заказа</h2>
+                <button class="close-modal" id="closePaymentModal">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="order-summary">
+                    <h3>Ваш заказ:</h3>
+                    <div id="paymentOrderItems"></div>
+                    <div class="order-total">
+                        <strong>Итого: <span id="paymentTotal">0</span> ₽</strong>
+                    </div>
+                </div>
+                
+                <form id="paymentForm" class="payment-form">
+                    <div class="payment-methods">
+                        <label class="payment-method">
+                            <input type="radio" name="payment" value="card" checked>
+                            <span>💳 Банковская карта</span>
+                        </label>
+                        <label class="payment-method">
+                            <input type="radio" name="payment" value="cash">
+                            <span>💵 Наличными при получении</span>
+                        </label>
+                    </div>
+                    
+                    <div id="cardDetails" class="card-details">
+                        <input type="text" placeholder="Номер карты" maxlength="19">
+                        <div class="card-row">
+                            <input type="text" placeholder="ММ/ГГ" maxlength="5">
+                            <input type="text" placeholder="CVV" maxlength="3">
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="payment-btn" id="payButton">
+                        💳 Оплатить <span id="payAmount">0</span> ₽
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Complete Modal -->
+    <div class="modal-overlay" id="orderCompleteModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Заказ оформлен! 🎉</h2>
+            </div>
+            <div class="modal-body">
+                <div class="order-success">
+                    <div class="success-icon">✅</div>
+                    <h3>Ваш заказ принят</h3>
+                    <p class="order-number">Номер заказа: <strong id="orderNumber">#0000</strong></p>
+                    <p>Статус заказа можно отслеживать в личном кабинете</p>
+                    <div class="order-actions">
+                        <button class="btn-primary" id="trackOrderBtn">Отслеживать заказ</button>
+                        <button class="btn-secondary" id="newOrderBtn">Сделать новый заказ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Свежий кофе каждый день</h1>
+            <p>Лучшие зёрна. Лучший вкус</p>
+            <button class="cta-button" id="orderNowBtn">Заказать сейчас</button>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="section" id="menu">
+        <div class="container">
+            <h2 class="section-title">Наше меню</h2>
+            <div class="category-tabs">
+                <button class="tab active" data-category="all">Все</button>
+                <button class="tab" data-category="coffee">Кофе</button>
+                <button class="tab" data-category="desserts">Десерты</button>
+                <button class="tab" data-category="cold">Холодные напитки</button>
+            </div>
+            <div class="menu-grid" id="menuGrid">
+                <!-- Menu items will be generated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title">О нашей кофейне</h2>
+            <div class="about-content">
+                <p>Мы - команда CoffeePoint, страстно любящая кофе и стремящаяся делиться этой любовью с вами. Наша кофейня была основана в 2015 году с целью создания уютного места, где каждый может насладиться качественным кофе в приятной атмосфере.</p>
+                <p>Мы тщательно отбираем лучшие зерна со всего мира и обжариваем их с любовью, чтобы вы могли ощутить неповторимый вкус и аромат в каждой чашке.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacts Section -->
+    <section class="section" id="contacts">
+        <div class="container">
+            <h2 class="section-title">Контакты</h2>
+            <div class="contacts-content">
+                <div class="contact-info">
+                    <h3>Наш адрес</h3>
+                    <p>ул. Кофейная, 15, Москва</p>
+                    <h3>Часы работы</h3>
+                    <p>Пн-Пт: 8:00 - 22:00</p>
+                    <p>Сб-Вс: 9:00 - 23:00</p>
+                    <h3>Телефон</h3>
+                    <p>+7 (495) 123-45-67</p>
+                </div>
+                <div class="map">
+                    <div class="map-placeholder">
+                        <p>Карта расположения кофейни</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Profile (shown when logged in) -->
+    <div class="user-profile" id="userProfile" style="display: none;">
+        <div class="profile-header">
+            <span>👤 <span id="userName">Пользователь</span></span>
+            <button id="logoutBtn">Выйти</button>
+        </div>
+        <div class="orders-history" id="ordersHistory">
+            <h3>История заказов</h3>
+            <div class="orders-list" id="ordersList">
+                <!-- Orders will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Icon -->
+    <div class="cart-icon" id="cartIcon">
+        <span>🛒</span>
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cartOverlay">
+        <div class="cart">
+            <div class="cart-header">
+                <h2 class="cart-title">Ваш заказ</h2>
+                <button class="close-cart" id="closeCart">✕</button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items will be generated by JavaScript -->
+            </div>
+            <div class="cart-total">
+                <span>Итого:</span>
+                <span id="cartTotal">0 ₽</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">Оформить заказ</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">CoffeePoint</div>
+                <p class="footer-text">Свежий кофе каждый день с 2015 года</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/shodiev.dev/#" class="social-link">Instagram</a>
+                    <a href="#" class="social-link">Facebook</a>
+                    <a href="https://t.me/Shodiev_13_01" class="social-link">Telegram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
