@@ -700,11 +700,11 @@ function sendOrderToTelegram(order) {
 
 function sendMessageToTelegram(orderText) {
     // ⚠️ ЗАМЕНИТЕ НА ВАШИ РЕАЛЬНЫЕ ДАННЫЕ ⚠️
-    const botToken = '8599522279:AAFXUL2lq5Y1Q6F3Y4hwZPsbD9L37pZss-s';
-    const chatId = '922642677'; // УБРАЛ ПРОБЕЛ в начале!
+    const botToken = '';
+    const chatId = ''; // УБРАЛ ПРОБЕЛ в начале!
     
     // Проверка на тестовые данные
-    if (!botToken || botToken === '8599522279:AAFXUL2lq5Y1Q6F3Y4hwZPsbD9L37pZss-s' || !chatId || chatId === '922642677') {
+    if (!botToken || botToken === '' || !chatId || chatId === '') {
         console.log('🔧 ТЕСТОВЫЙ РЕЖИМ - Telegram не настроен');
         console.log('📦 Заказ для Telegram:');
         console.log(orderText);
@@ -868,4 +868,5 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
         }
     });
+
 });
