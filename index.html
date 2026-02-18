@@ -3,241 +3,728 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CoffeePoint - Свежий кофе каждый день</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Рамадан Муборак | Shodiev Aslamshoh</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Tajawal:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a1922 0%, #0b1e2c 100%);
+            font-family: 'Amiri', 'Scheherazade New', 'Tajawal', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Анимированный фон */
+        .background-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 15% 25%, rgba(218, 165, 32, 0.08) 0%, transparent 25%),
+                radial-gradient(circle at 85% 65%, rgba(218, 165, 32, 0.08) 0%, transparent 30%),
+                radial-gradient(circle at 45% 80%, rgba(218, 165, 32, 0.08) 0%, transparent 20%),
+                radial-gradient(circle at 75% 15%, rgba(218, 165, 32, 0.08) 0%, transparent 35%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        /* Исламский геометрический узор */
+        .islamic-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(45deg, 
+                    rgba(218, 165, 32, 0.02) 0px, 
+                    rgba(218, 165, 32, 0.02) 2px,
+                    transparent 2px, 
+                    transparent 10px);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* Плавающие звезды и полумесяцы */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .floating-item {
+            position: absolute;
+            color: rgba(255, 215, 0, 0.2);
+            font-size: 24px;
+            animation: floatAround 15s infinite linear;
+        }
+        
+        @keyframes floatAround {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, -20px) rotate(90deg); }
+            50% { transform: translate(40px, 0) rotate(180deg); }
+            75% { transform: translate(20px, 20px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+        
+        /* Основной контейнер */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            margin: 30px;
+            padding: 50px;
+            background: rgba(10, 25, 35, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 40px;
+            box-shadow: 
+                0 0 80px rgba(218, 165, 32, 0.3),
+                inset 0 0 50px rgba(218, 165, 32, 0.15);
+            border: 2px solid rgba(218, 165, 32, 0.4);
+            animation: containerGlow 4s infinite alternate;
+        }
+        
+        @keyframes containerGlow {
+            0% { box-shadow: 0 0 50px rgba(218, 165, 32, 0.2), inset 0 0 30px rgba(218, 165, 32, 0.1); }
+            100% { box-shadow: 0 0 100px rgba(218, 165, 32, 0.5), inset 0 0 60px rgba(218, 165, 32, 0.25); }
+        }
+        
+        /* Верхний орнамент */
+        .ornament-top {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            font-size: 40px;
+        }
+        
+        .ornament-top span {
+            animation: ornamentPulse 3s infinite;
+            filter: drop-shadow(0 0 10px gold);
+        }
+        
+        .ornament-top span:nth-child(2) { animation-delay: 0.3s; }
+        .ornament-top span:nth-child(3) { animation-delay: 0.6s; }
+        .ornament-top span:nth-child(4) { animation-delay: 0.9s; }
+        .ornament-top span:nth-child(5) { animation-delay: 1.2s; }
+        .ornament-top span:nth-child(6) { animation-delay: 1.5s; }
+        .ornament-top span:nth-child(7) { animation-delay: 1.8s; }
+        
+        @keyframes ornamentPulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(10deg); }
+        }
+        
+        /* Блок с именем автора */
+        .author-signature {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(218, 165, 32, 0.1);
+            border-radius: 60px;
+            border: 1px solid rgba(218, 165, 32, 0.4);
+            position: relative;
+            overflow: hidden;
+            animation: signatureGlow 3s infinite;
+        }
+        
+        @keyframes signatureGlow {
+            0%, 100% { border-color: rgba(218, 165, 32, 0.4); }
+            50% { border-color: rgba(255, 215, 0, 0.9); }
+        }
+        
+        .author-signature::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(218, 165, 32, 0.1),
+                transparent
+            );
+            animation: shimmer 4s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translate(-30%, -30%) rotate(0deg); }
+            100% { transform: translate(30%, 30%) rotate(20deg); }
+        }
+        
+        .author-name {
+            font-size: 32px;
+            font-weight: 700;
+            color: #FFD700;
+            text-shadow: 
+                0 0 10px #FFD700,
+                0 0 20px #DAA520,
+                2px 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: 3px;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .author-title {
+            font-size: 18px;
+            color: #DAA520;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        
+        /* Главный заголовок */
+        .main-title {
+            text-align: center;
+            margin: 40px 0;
+            position: relative;
+        }
+        
+        .ramadan-text {
+            font-size: 70px;
+            font-weight: 700;
+            color: #FFD700;
+            text-shadow: 
+                0 0 15px #FFD700,
+                0 0 30px #DAA520,
+                0 0 45px #B8860B,
+                0 0 60px #8B6913;
+            animation: ramadanGlow 2.5s infinite;
+            letter-spacing: 6px;
+            line-height: 1.3;
+        }
+        
+        @keyframes ramadanGlow {
+            0%, 100% { 
+                text-shadow: 0 0 15px #FFD700, 0 0 30px #DAA520, 0 0 45px #B8860B;
+                transform: scale(1);
+            }
+            50% { 
+                text-shadow: 0 0 25px #FFD700, 0 0 50px #DAA520, 0 0 75px #B8860B, 0 0 100px #8B6913;
+                transform: scale(1.02);
+            }
+        }
+        
+        .subtitle {
+            font-size: 28px;
+            color: #DAA520;
+            margin-top: 15px;
+            font-style: italic;
+            animation: subtitleFloat 3s infinite;
+        }
+        
+        @keyframes subtitleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        /* Декоративные линии */
+        .decorative-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .decorative-line::before,
+        .decorative-line::after {
+            content: '☪️';
+            font-size: 24px;
+            color: #DAA520;
+            animation: rotate 6s linear infinite;
+        }
+        
+        .decorative-line span {
+            font-size: 20px;
+            color: #FFD700;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Текст поздравления */
+        .greeting-text {
+            text-align: center;
+            color: #fff;
+            margin: 40px 0;
+            font-size: 22px;
+            line-height: 2;
+        }
+        
+        .greeting-text p {
+            margin: 20px 0;
+            opacity: 0;
+            animation: fadeInRight 0.8s forwards;
+            position: relative;
+            padding: 5px 15px;
+        }
+        
+        .greeting-text p:hover {
+            background: rgba(218, 165, 32, 0.1);
+            border-radius: 30px;
+            transform: scale(1.02);
+            transition: all 0.3s;
+        }
+        
+        @keyframes fadeInRight {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .greeting-text p:nth-child(1) { animation-delay: 0.3s; }
+        .greeting-text p:nth-child(2) { animation-delay: 0.6s; }
+        .greeting-text p:nth-child(3) { animation-delay: 0.9s; }
+        .greeting-text p:nth-child(4) { animation-delay: 1.2s; }
+        .greeting-text p:nth-child(5) { animation-delay: 1.5s; }
+        
+        /* Список пожеланий */
+        .wishes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin: 50px 0;
+        }
+        
+        .wish-card {
+            background: linear-gradient(135deg, rgba(218, 165, 32, 0.15), rgba(218, 165, 32, 0.05));
+            border: 2px solid rgba(218, 165, 32, 0.3);
+            border-radius: 25px;
+            padding: 25px 15px;
+            text-align: center;
+            transition: all 0.4s;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            animation: cardSlideUp 0.8s forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .wish-card:nth-child(1) { animation-delay: 1.8s; }
+        .wish-card:nth-child(2) { animation-delay: 2.1s; }
+        .wish-card:nth-child(3) { animation-delay: 2.4s; }
+        .wish-card:nth-child(4) { animation-delay: 2.7s; }
+        
+        @keyframes cardSlideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .wish-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            background: linear-gradient(135deg, rgba(218, 165, 32, 0.3), rgba(218, 165, 32, 0.15));
+            border-color: #FFD700;
+            box-shadow: 0 15px 40px rgba(218, 165, 32, 0.4);
+        }
+        
+        .wish-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+            animation: iconPulse 3s infinite;
+        }
+        
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .wish-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+        
+        .wish-description {
+            font-size: 15px;
+            color: #e0e0e0;
+            line-height: 1.5;
+        }
+        
+        /* Кнопка */
+        .blessing-button {
+            background: linear-gradient(45deg, #8B6913, #DAA520, #FFD700);
+            border: none;
+            color: #0a1922;
+            font-family: 'Amiri', serif;
+            font-size: 24px;
+            font-weight: 700;
+            padding: 15px 40px;
+            border-radius: 60px;
+            cursor: pointer;
+            margin: 30px 0 20px;
+            transition: all 0.4s;
+            box-shadow: 0 5px 30px rgba(255, 215, 0, 0.5);
+            border: 2px solid #FFD700;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .blessing-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .blessing-button:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .blessing-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 50px rgba(255, 215, 0, 0.8);
+            background: linear-gradient(45deg, #FFD700, #DAA520, #8B6913);
+        }
+        
+        /* Футер с автором */
+        .footer {
+            margin-top: 40px;
+            padding: 25px;
+            text-align: center;
+            border-top: 2px solid rgba(218, 165, 32, 0.3);
+            position: relative;
+        }
+        
+        .footer-signature {
+            font-size: 22px;
+            color: #DAA520;
+            font-family: 'Tajawal', sans-serif;
+            letter-spacing: 2px;
+            animation: signatureFade 3s infinite;
+        }
+        
+        @keyframes signatureFade {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; text-shadow: 0 0 15px gold; }
+        }
+        
+        .footer-date {
+            color: #DAA520;
+            margin-top: 10px;
+            font-size: 16px;
+            opacity: 0.8;
+        }
+        
+        .copyright {
+            color: rgba(218, 165, 32, 0.5);
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        
+        /* Модальное окно */
+        .blessing-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #0a1922, #1a2f3f);
+            padding: 40px;
+            border-radius: 40px;
+            font-size: 26px;
+            font-weight: 700;
+            text-align: center;
+            z-index: 1000;
+            border: 3px solid #FFD700;
+            box-shadow: 0 0 70px rgba(255, 215, 0, 0.7);
+            max-width: 500px;
+            width: 90%;
+            animation: modalAppear 0.5s ease-out;
+        }
+        
+        @keyframes modalAppear {
+            from { 
+                transform: translate(-50%, -30%) scale(0.5); 
+                opacity: 0; 
+            }
+            to { 
+                transform: translate(-50%, -50%) scale(1); 
+                opacity: 1; 
+            }
+        }
+        
+        .modal-author {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #DAA520;
+            border-top: 1px solid #DAA520;
+            padding-top: 15px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .modal-close {
+            background: #FFD700;
+            color: #0a1922;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-family: 'Amiri', serif;
+            font-size: 18px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+        
+        .modal-close:hover {
+            transform: scale(1.1);
+            background: #DAA520;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+                margin: 15px;
+            }
+            
+            .ramadan-text {
+                font-size: 45px;
+            }
+            
+            .author-name {
+                font-size: 24px;
+            }
+            
+            .wishes {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .greeting-text {
+                font-size: 18px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .wishes {
+                grid-template-columns: 1fr;
+            }
+            
+            .ornament-top {
+                font-size: 24px;
+            }
+            
+            .blessing-button {
+                font-size: 18px;
+                padding: 12px 25px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <a href="#" class="logo">CoffeePoint</a>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="#menu">Меню</a></li>
-                    <li><a href="#about">О нас</a></li>
-                    <li><a href="#contacts">Контакты</a></li>
-                    <li><a href="#" id="authButton">Войти</a></li>
-                </ul>
-            </nav>
-            <button class="theme-toggle" id="themeToggle">🌙</button>
-            <div class="burger" id="burger">
-                <span></span>
-                <span></span>
-                <span></span>
+    <div class="background-pattern"></div>
+    <div class="islamic-pattern"></div>
+    
+    <div class="floating-elements" id="floatingElements"></div>
+    
+    <div class="container">
+        <!-- Верхний орнамент -->
+        <div class="ornament-top">
+            <span>🌙</span>
+            <span>✨</span>
+            <span>⭐</span>
+            <span>🕌</span>
+            <span>☪️</span>
+            <span>✨</span>
+            <span>🌙</span>
+        </div>
+        
+        <!-- Блок с автором -->
+        <div class="author-signature">
+            <div class="author-name">Shodiev Aslamshoh</div>
+            <div class="author-title">✧ Священный месяц Рамадан ✧</div>
+        </div>
+        
+        <!-- Главный заголовок -->
+        <div class="main-title">
+            <div class="ramadan-text">РАМАДАН</div>
+            <div class="ramadan-text" style="font-size: 60px;">МУБОРАК</div>
+            <div class="subtitle">🌙 Ramadan Mubarak 🌙</div>
+        </div>
+        
+        <!-- Декоративная линия -->
+        <div class="decorative-line">
+            <span>☪️</span>
+            <span>⚘</span>
+            <span>☪️</span>
+        </div>
+        
+        <!-- Текст поздравления -->
+        <div class="greeting-text">
+            <p>Дорогие братья и сестры!</p>
+            <p>От всего сердца поздравляю вас</p>
+            <p>с наступлением священного месяца Рамадан!</p>
+            <p>Пусть этот благословенный месяц принесет</p>
+            <p>мир, радость и благополучие в каждый дом!</p>
+        </div>
+        
+        <!-- Карточки пожеланий -->
+        <div class="wishes">
+            <div class="wish-card">
+                <div class="wish-icon">🤲</div>
+                <div class="wish-title">Дуа</div>
+                <div class="wish-description">Пусть все молитвы будут услышаны</div>
+            </div>
+            
+            <div class="wish-card">
+                <div class="wish-icon">📖</div>
+                <div class="wish-title">Коран</div>
+                <div class="wish-description">Чтение Корана наполнит сердце светом</div>
+            </div>
+            
+            <div class="wish-card">
+                <div class="wish-icon">🕌</div>
+                <div class="wish-title">Ибадат</div>
+                <div class="wish-description">Искреннего поклонения Всевышнему</div>
+            </div>
+            
+            <div class="wish-card">
+                <div class="wish-icon">❤️</div>
+                <div class="wish-title">Баракат</div>
+                <div class="wish-description">Благословения вашему дому</div>
             </div>
         </div>
-    </header>
-
-    <!-- Auth Modal -->
-    <div class="modal-overlay" id="authModal">
-        <div class="modal">
-            <div class="modal-header">
-                <h2 id="authModalTitle">Вход в аккаунт</h2>
-                <button class="close-modal" id="closeAuthModal">✕</button>
-            </div>
-            <div class="modal-body">
-                <div class="auth-tabs">
-                    <button class="auth-tab active" data-tab="login">Вход</button>
-                    <button class="auth-tab" data-tab="register">Регистрация</button>
-                </div>
-                
-                <form id="loginForm" class="auth-form active">
-                    <input type="email" placeholder="Email" required>
-                    <input type="password" placeholder="Пароль" required>
-                    <button type="submit" class="auth-btn">Войти</button>
-                </form>
-                
-                <form id="registerForm" class="auth-form">
-                    <input type="text" placeholder="Имя" required>
-                    <input type="email" placeholder="Email" required>
-                    <input type="tel" placeholder="Телефон" required>
-                    <input type="password" placeholder="Пароль" required>
-                    <input type="password" placeholder="Повторите пароль" required>
-                    <button type="submit" class="auth-btn">Зарегистрироваться</button>
-                </form>
-            </div>
+        
+        <!-- Кнопка -->
+        <div style="text-align: center;">
+            <button class="blessing-button" onclick="showBlessing()">
+                Рамадан карим ✨
+            </button>
         </div>
-    </div>
-
-    <!-- Payment Modal -->
-    <div class="modal-overlay" id="paymentModal">
-        <div class="modal">
-            <div class="modal-header">
-                <h2>Оплата заказа</h2>
-                <button class="close-modal" id="closePaymentModal">✕</button>
-            </div>
-            <div class="modal-body">
-                <div class="order-summary">
-                    <h3>Ваш заказ:</h3>
-                    <div id="paymentOrderItems"></div>
-                    <div class="order-total">
-                        <strong>Итого: <span id="paymentTotal">0</span> ₽</strong>
-                    </div>
-                </div>
-                
-                <form id="paymentForm" class="payment-form">
-                    <div class="payment-methods">
-                        <label class="payment-method">
-                            <input type="radio" name="payment" value="card" checked>
-                            <span>💳 Банковская карта</span>
-                        </label>
-                        <label class="payment-method">
-                            <input type="radio" name="payment" value="cash">
-                            <span>💵 Наличными при получении</span>
-                        </label>
-                    </div>
-                    
-                    <div id="cardDetails" class="card-details">
-                        <input type="text" placeholder="Номер карты" maxlength="19">
-                        <div class="card-row">
-                            <input type="text" placeholder="ММ/ГГ" maxlength="5">
-                            <input type="text" placeholder="CVV" maxlength="3">
-                        </div>
-                    </div>
-                    
-                    <button type="submit" class="payment-btn" id="payButton">
-                        💳 Оплатить <span id="payAmount">0</span> ₽
-                    </button>
-                </form>
-            </div>
+        
+        <!-- Футер -->
+        <div class="footer">
+            <div class="footer-signature">✧ Shodiev Aslamshoh ✧</div>
+            <div class="footer-date">Рамадан 1445 / 2026</div>
+            <div class="copyright">© Все права защищены | Благословенного месяца</div>
         </div>
-    </div>
-
-    <!-- Order Complete Modal -->
-    <div class="modal-overlay" id="orderCompleteModal">
-        <div class="modal">
-            <div class="modal-header">
-                <h2>Заказ оформлен! 🎉</h2>
-            </div>
-            <div class="modal-body">
-                <div class="order-success">
-                    <div class="success-icon">✅</div>
-                    <h3>Ваш заказ принят</h3>
-                    <p class="order-number">Номер заказа: <strong id="orderNumber">#0000</strong></p>
-                    <p>Статус заказа можно отслеживать в личном кабинете</p>
-                    <div class="order-actions">
-                        <button class="btn-primary" id="trackOrderBtn">Отслеживать заказ</button>
-                        <button class="btn-secondary" id="newOrderBtn">Сделать новый заказ</button>
-                    </div>
-                </div>
-            </div>
+        
+        <!-- Нижний орнамент -->
+        <div class="ornament-top" style="margin-top: 20px;">
+            <span>🌙</span>
+            <span>✨</span>
+            <span>⭐</span>
+            <span>☪️</span>
+            <span>✨</span>
+            <span>🌙</span>
         </div>
     </div>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Свежий кофе каждый день</h1>
-            <p>Лучшие зёрна. Лучший вкус</p>
-            <button class="cta-button" id="orderNowBtn">Заказать сейчас</button>
-        </div>
-    </section>
-
-    <!-- Menu Section -->
-    <section class="section" id="menu">
-        <div class="container">
-            <h2 class="section-title">Наше меню</h2>
-            <div class="category-tabs">
-                <button class="tab active" data-category="all">Все</button>
-                <button class="tab" data-category="coffee">Кофе</button>
-                <button class="tab" data-category="desserts">Десерты</button>
-                <button class="tab" data-category="cold">Холодные напитки</button>
-            </div>
-            <div class="menu-grid" id="menuGrid">
-                <!-- Menu items will be generated by JavaScript -->
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="section" id="about">
-        <div class="container">
-            <h2 class="section-title">О нашей кофейне</h2>
-            <div class="about-content">
-                <p>Мы - команда CoffeePoint, страстно любящая кофе и стремящаяся делиться этой любовью с вами. Наша кофейня была основана в 2025 году с целью создания уютного места, где каждый может насладиться качественным кофе в приятной атмосфере.</p>
-                <p>Мы тщательно отбираем лучшие зерна со всего мира и обжариваем их с любовью, чтобы вы могли ощутить неповторимый вкус и аромат в каждой чашке.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contacts Section -->
-    <section class="section" id="contacts">
-        <div class="container">
-            <h2 class="section-title">Контакты</h2>
-            <div class="contacts-content">
-                <div class="contact-info">
-                    <h3>Наш адрес</h3>
-                    <p>ул. Кофейная, 15, Москва</p>
-                    <h3>Часы работы</h3>
-                    <p>Пн-Пт: 8:00 - 22:00</p>
-                    <p>Сб-Вс: 9:00 - 23:00</p>
-                    <h3>Телефон</h3>
-                    <p>+7 (495) 123-45-67</p>
-                </div>
-                <div class="map">
-                    <div class="map-placeholder">
-                        <p>Карта расположения кофейни</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- User Profile (shown when logged in) -->
-    <div class="user-profile" id="userProfile" style="display: none;">
-        <div class="profile-header">
-            <span>👤 <span id="userName">Пользователь</span></span>
-            <button id="logoutBtn">Выйти</button>
-        </div>
-        <div class="orders-history" id="ordersHistory">
-            <h3>История заказов</h3>
-            <div class="orders-list" id="ordersList">
-                <!-- Orders will be populated here -->
-            </div>
-        </div>
+    
+    <!-- Модальное окно -->
+    <div id="blessingModal" class="blessing-modal hidden">
+        <p id="blessingText" style="color: #FFD700; line-height: 1.6;"></p>
+        <div style="font-size: 40px; margin: 20px 0;">🌙✨⭐✨🌙</div>
+        <div class="modal-author">от Shodiev Aslamshoh</div>
+        <button class="modal-close" onclick="hideBlessing()">Амин 🤲</button>
     </div>
 
-    <!-- Cart Icon -->
-    <div class="cart-icon" id="cartIcon">
-        <span>🛒</span>
-        <span class="cart-count" id="cartCount">0</span>
-    </div>
-
-    <!-- Cart Overlay -->
-    <div class="cart-overlay" id="cartOverlay">
-        <div class="cart">
-            <div class="cart-header">
-                <h2 class="cart-title">Ваш заказ</h2>
-                <button class="close-cart" id="closeCart">✕</button>
-            </div>
-            <div class="cart-items" id="cartItems">
-                <!-- Cart items will be generated by JavaScript -->
-            </div>
-            <div class="cart-total">
-                <span>Итого:</span>
-                <span id="cartTotal">0 ₽</span>
-            </div>
-            <button class="checkout-btn" id="checkoutBtn">Оформить заказ</button>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">CoffeePoint</div>
-                <p class="footer-text">Свежий кофе каждый день с 2015 года</p>
-                <div class="social-links">
-                    <a href="https://www.instagram.com/shodiev.dev/#" class="social-link">Instagram</a>
-                    <a href="#" class="social-link">Facebook</a>
-                    <a href="https://t.me/Shodiev_13_01" class="social-link">Telegram</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="app.js"></script>
+    <script>
+        // Создание плавающих элементов
+        function createFloatingElements() {
+            const container = document.getElementById('floatingElements');
+            const symbols = ['🌙', '✨', '⭐', '☪️', '🕌', '🤲', '📖'];
+            
+            for (let i = 0; i < 25; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-item';
+                element.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+                element.style.left = Math.random() * 100 + '%';
+                element.style.top = Math.random() * 100 + '%';
+                element.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                element.style.animationDelay = Math.random() * 10 + 's';
+                element.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                container.appendChild(element);
+            }
+        }
+        
+        // Массив благословений
+        const blessings = [
+            "🤲 Да примет Аллах ваш пост, молитвы и благие деяния!",
+            "🌙 Пусть этот Рамадан станет временем духовного очищения!",
+            "✨ Благословенного вам месяца, милости и прощения грехов!",
+            "⭐ Да озарит свет Рамадана вашу душу и сердце!",
+            "🕌 Пусть Всевышний дарует вам терпение, мудрость и крепкую веру!",
+            "📖 Чтение Корана принесет в вашу жизнь благословение!",
+            "❤️ Мира вашему дому, счастья вашей семье!"
+        ];
+        
+        // Функция показа благословения
+        function showBlessing() {
+            const modal = document.getElementById('blessingModal');
+            const blessingText = document.getElementById('blessingText');
+            const randomBlessing = blessings[Math.floor(Math.random() * blessings.length)];
+            
+            blessingText.textContent = randomBlessing;
+            modal.classList.remove('hidden');
+            
+            // Автоматическое скрытие через 5 секунд
+            setTimeout(hideBlessing, 5000);
+        }
+        
+        function hideBlessing() {
+            document.getElementById('blessingModal').classList.add('hidden');
+        }
+        
+        // Создаем элементы при загрузке
+        window.onload = function() {
+            createFloatingElements();
+            
+            // Добавляем эффект для заголовка
+            setInterval(() => {
+                const title = document.querySelector('.ramadan-text');
+                if (title) {
+                    title.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        title.style.transform = 'scale(1)';
+                    }, 200);
+                }
+            }, 3000);
+        };
+        
+        // Обработка нажатия Escape для закрытия модального окна
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hideBlessing();
+            }
+        });
+        
+        // Закрытие по клику вне модального окна
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('blessingModal');
+            if (!modal.contains(e.target) && !e.target.classList.contains('blessing-button')) {
+                hideBlessing();
+            }
+        });
+    </script>
 </body>
-
 </html>
